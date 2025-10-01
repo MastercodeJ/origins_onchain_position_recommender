@@ -1,0 +1,48 @@
+[package]
+name = "origins_onchain_position_recommender"
+version = "0.1.0"
+edition = "2021"
+description = "Onchain position recommender for Origins protocol"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+repository = "https://github.com/yourusername/origins_onchain_position_recommender"
+
+[dependencies]
+# Web3 and blockchain interaction (ABI encode/decode + JSON-RPC)
+ethabi = "18"
+ethereum-types = "0.14"
+hex = "0.4"
+sha3 = "0.10"
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.11", features = ["json"] }
+anyhow = "1.0"
+thiserror = "1.0"
+
+# CLI and configuration
+clap = { version = "4.0", features = ["derive"] }
+config = "0.13"
+dotenv = "0.15"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Math and data processing
+num-bigint = "0.4"
+rust_decimal = "1.32"
+
+# Configuration parsing
+toml = "0.8"
+
+# Date and time
+chrono = { version = "0.4", features = ["serde"] }
+
+# AI/ML Libraries
+smartcore = "0.3"
+linfa = "0.7"
+rusty-machine = "0.5"
+
+[dev-dependencies]
+tokio-test = "0.4"

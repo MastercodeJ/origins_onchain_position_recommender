@@ -1,0 +1,176 @@
+# Origins Onchain Position Recommender Configuration
+
+# =============================================================================
+# BLOCKCHAIN RPC ENDPOINTS
+# =============================================================================
+
+# Primary RPC endpoint for blockchain interaction
+rpc_url = "https://arb-mainnet.g.alchemy.com/v2/4x8Cl0gzhQNHbAnbINc8uZ7Sp5R2fUka"
+
+# Alternative RPC endpoints for redundancy
+# backup_rpc_urls = [
+#     "https://eth-mainnet.alchemyapi.io/v2/your-alchemy-key",
+#     "https://mainnet.infura.io/v3/your-backup-project-id",
+#     "https://cloudflare-eth.com"
+# ]
+
+# =============================================================================
+# API ENDPOINTS FOR MARKET DATA
+# =============================================================================
+
+# CoinGecko API for price data
+coingecko_api_url = "https://api.coingecko.com/api/v3"
+
+# CoinMarketCap API (requires API key)
+# coinmarketcap_api_url = "https://pro-api.coinmarketcap.com/v1"
+# coinmarketcap_api_key = "your-coinmarketcap-api-key"
+
+# DeFiPulse API for DeFi protocol data
+# defipulse_api_url = "https://data-api.defipulse.com/api/v1"
+
+# The Graph API for on-chain data
+# thegraph_api_url = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3"
+
+# =============================================================================
+# ORIGINS PROTOCOL CONFIGURATION
+# =============================================================================
+
+# Origins protocol contract address (update with actual address)
+origins_contract_address = "0x0000000000000000000000000000000000000000"
+
+# Origins protocol ABI file path
+# origins_abi_path = "contracts/origins_abi.json"
+
+# =============================================================================
+# POSITION ANALYSIS CONFIGURATION
+# =============================================================================
+
+# Minimum position value in USD to consider for analysis
+position_threshold = 0.1
+
+# Maximum number of positions to recommend
+max_positions = 10
+
+# Risk assessment parameters
+[risk_assessment]
+# Maximum risk score threshold (0.0 to 1.0)
+max_risk_score = 0.8
+
+# Minimum liquidity score threshold (0.0 to 1.0)
+min_liquidity_score = 0.3
+
+# Volatility threshold for high-risk positions
+volatility_threshold = 0.5
+
+# =============================================================================
+# RECOMMENDATION SETTINGS
+# =============================================================================
+
+# Recommendation generation interval in seconds (5 minutes)
+recommendation_interval = 300
+
+# Enable/disable different recommendation types
+[recommendation_types]
+# Generate hold recommendations
+hold_recommendations = true
+
+# Generate increase position recommendations
+increase_recommendations = true
+
+# Generate decrease position recommendations
+decrease_recommendations = true
+
+# Generate exit recommendations
+exit_recommendations = true
+
+# =============================================================================
+# LOGGING AND MONITORING
+# =============================================================================
+
+# Log level (trace, debug, info, warn, error)
+log_level = "info"
+
+# Enable detailed position analysis logging
+detailed_logging = false
+
+# Enable performance metrics logging
+performance_logging = true
+
+# =============================================================================
+# SECURITY CONFIGURATION
+# =============================================================================
+
+# Private key for signing transactions (optional, for demo purposes)
+# WARNING: Never commit real private keys to version control!
+# private_key = "your-private-key-here"
+
+# Enable transaction signing (requires private_key)
+enable_transaction_signing = false
+
+# Gas price settings (in gwei)
+[gas_settings]
+# Maximum gas price to pay
+max_gas_price = 50
+
+# Gas limit for transactions
+gas_limit = 200000
+
+# =============================================================================
+# MARKET DATA CONFIGURATION
+# =============================================================================
+
+# Market data refresh interval in seconds
+market_data_refresh_interval = 60
+
+# Enable real-time price updates
+real_time_prices = true
+
+# Price data sources priority (first to last)
+price_sources = [
+    "coingecko",
+    "coinmarketcap"
+]
+
+# =============================================================================
+# NOTIFICATION SETTINGS
+# =============================================================================
+
+# Enable notifications for recommendations
+notifications_enabled = false
+
+# Notification channels
+# notification_channels = {
+#     # Discord webhook URL
+#     discord_webhook = "https://discord.com/api/webhooks/your-webhook-url",
+#     
+#     # Slack webhook URL
+#     slack_webhook = "https://hooks.slack.com/services/your-webhook-url",
+#     
+#     # Email settings
+#     email = {
+#         smtp_server = "smtp.gmail.com",
+#         smtp_port = 587,
+#         username = "your-email@gmail.com",
+#         password = "your-app-password",
+#         to_address = "notifications@yourdomain.com"
+#     }
+# }
+
+# =============================================================================
+# DEVELOPMENT AND TESTING
+# =============================================================================
+
+# Enable test mode (uses mock data)
+test_mode = false
+
+# Mock data configuration
+[mock_data]
+# Number of mock positions to generate
+mock_positions_count = 5
+
+# Mock token addresses
+mock_tokens = [
+    "0xA0b86a33E6441b8C4C8C0C4C0C4C0C4C0C4C0C4C",
+    "0xB1c97d44F5552b8D5D5D5D5D5D5D5D5D5D5D5D5D",
+    "0xC2d88e66F6663c9E6E6E6E6E6E6E6E6E6E6E6E6E"
+]
