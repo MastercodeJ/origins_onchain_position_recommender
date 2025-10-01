@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+      
+    - name: Cache cargo registry
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+          target
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-
+          
+    - name: Build for multiple targets
+      run: |
+        cargo build --release --target x86_64-unknown-linux-gnu
+        cargo build --release --target x86_64-apple-darwin
+        cargo build --release --target x86_64-pc-windows-gnu
+        
+    - name: Create release archive
+      run: |
+        tar -czf origins-onchain-position-recommender-linux-x86_64.tar.gz target/x86_64-unknown-linux-gnu/release/origins_onchain_position_recommender
+        tar -czf origins-onchain-position-recommender-macos-x86_64.tar.gz target/x86_64-apple-darwin/release/origins_onchain_position_recommender
+        zip -j origins-onchain-position-recommender-windows-x86_64.zip target/x86_64-pc-windows-gnu/release/origins_onchain_position_recommender.exe
+        
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          origins-onchain-position-recommender-linux-x86_64.tar.gz
+          origins-onchain-position-recommender-macos-x86_64.tar.gz
+          origins-onchain-position-recommender-windows-x86_64.zip
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
